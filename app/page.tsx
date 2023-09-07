@@ -27,13 +27,13 @@ export default async function HomePage() {
       <div className="my-20">
         <h1 className="mb-10 text-5xl font-medium">Collections</h1>
         <Grid className="grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
-          {collections.map((item, index) => (
+          {collections.map((collection, index) => (
             <div key={index}>
               <Link
-                href={item.path}
+                href={collection.path}
                 className="flex items-center justify-center h-20 border"
               >
-                {item.title}
+                {collection.title}
               </Link>
             </div>
           ))}
@@ -44,7 +44,7 @@ export default async function HomePage() {
         <div className="my-20">
           <h1 className="mb-10 text-5xl font-medium">Popular Wines</h1>
           <Grid className="grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
-            <ProductGridItems products={products} />
+            <ProductGridItems products={products.slice(0, 6)} />
           </Grid>
         </div>
       </Suspense>
