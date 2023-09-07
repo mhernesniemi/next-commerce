@@ -56,6 +56,8 @@ export default async function ProductPage({
 }) {
   const product = await getProduct(params.handle);
 
+  console.log(product);
+
   if (!product) return notFound();
 
   const productJsonLd = {
@@ -84,7 +86,7 @@ export default async function ProductPage({
         }}
       />
       <div className="px-4 mx-auto max-w-screen-2xl">
-        <div className="flex flex-col p-8 bg-white border rounded-lg border-neutral-200 dark:border-neutral-800 dark:bg-black md:p-12 lg:flex-row lg:gap-8">
+        <div className="flex flex-col p-8 bg-white border rounded-lg border-neutral-200 md:p-12 lg:flex-row lg:gap-8">
           <div className="w-full h-full basis-full lg:basis-4/6">
             <Gallery
               images={product.images.map((image: Image) => ({

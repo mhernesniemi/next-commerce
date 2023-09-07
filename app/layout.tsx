@@ -34,10 +34,10 @@ export default async function RootLayout({
 }) {
   return (
     <html lang="en" className={inter.variable}>
-      <body className="text-black bg-neutral-50 selection:bg-teal-300 dark:bg-neutral-900 dark:text-white dark:selection:bg-pink-500 dark:selection:text-white">
+      <body className="bg-neutral-100 text-black selection:bg-teal-300">
         <Navbar />
         <Suspense>
-          <main className="max-w-screen-xl mx-auto">{children}</main>
+          <main className="mx-auto max-w-screen-xl">{children}</main>
         </Suspense>
         <Suspense>
           <Footer />

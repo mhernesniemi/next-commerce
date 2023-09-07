@@ -1,29 +1,34 @@
 import Cart from "components/cart";
 import OpenCart from "components/cart/open-cart";
-import { getMenu } from "lib/shopify";
+import Searchbox from "components/searchbox";
+import { getMenu, getProducts } from "lib/shopify";
 import { Menu } from "lib/shopify/types";
 import Link from "next/link";
 import { Suspense } from "react";
 import MobileMenu from "./mobile-menu";
-import Search from "./search";
 const { SITE_NAME } = process.env;
 
 export default async function Navbar() {
   const menu = await getMenu("next-js-frontend-header-menu");
 
+  const products = await getProducts({
+    query: "",
+    sortKey: "BEST_SELLING",
+  });
+
   return (
     <nav className="relative flex items-center justify-between p-4 lg:px-6">
-      <div className="flex-none block md:hidden">
+      <div className="block flex-none md:hidden">
         <MobileMenu menu={menu} />
       </div>
-      <div className="flex items-center w-full">
+      <div className="flex w-full items-center">
         <div className="flex w-full md:w-1/3">
           <Link
             href="/"
-            className="flex items-center justify-center w-full mr-2 md:w-auto lg:mr-6"
+            className="mr-2 flex w-full items-center justify-center md:w-auto lg:mr-6"
           >
             <div className="text-3xl">🍷</div>
-            <div className="flex-none ml-2 text-sm font-medium uppercase md:hidden lg:block">
+            <div className="ml-2 flex-none text-sm font-medium uppercase md:hidden lg:block">
               {SITE_NAME}
             </div>
           </Link>
@@ -33,7 +38,7 @@ export default async function Navbar() {
                 <li key={item.title}>
                   <Link
                     href={item.path}
-                    className="text-neutral-500 underline-offset-4 hover:text-black hover:underline dark:text-neutral-400 dark:hover:text-neutral-300"
+                    className="text-neutral-500 underline-offset-4 hover:text-black hover:underline"
                   >
                     {item.title}
                   </Link>
@@ -42,8 +47,8 @@ export default async function Navbar() {
             </ul>
           ) : null}
         </div>
-        <div className="justify-center hidden md:flex md:w-1/3">
-          <Search />
+        <div className="hidden justify-center md:flex md:w-1/3">
+          <Searchbox people={products} />
         </div>
         <div className="flex justify-end md:w-1/3">
           <Suspense fallback={<OpenCart />}>

@@ -5,18 +5,9 @@
     }
   ],
   "settings": {
-    "breadcrumbs.enabled": true,
-    "css.validate": true,
-    "diffEditor.ignoreTrimWhitespace": false,
-    "editor.autoIndent": "advanced",
-    "editor.insertSpaces": true,
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
     "editor.formatOnPaste": true,
-    "editor.formatOnSave": true,
-    "editor.renderWhitespace": "boundary",
-    "editor.wordWrapColumn": 80,
-    "editor.wordWrap": "off",
-    "editor.detectIndentation": false,
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
+    "editor.formatOnSave": true
   },
   "launch": {
     "version": "0.2.0",

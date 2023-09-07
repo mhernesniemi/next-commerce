@@ -10,11 +10,11 @@ export default function SearchLayout({
 }) {
   return (
     <Suspense>
-      <div className="flex flex-col gap-8 px-4 pb-4 mx-auto text-black max-w-screen-2xl dark:text-white md:flex-row">
+      <div className="mx-auto flex max-w-screen-2xl flex-col gap-8 px-4 pb-4 text-black">
         <div className="order-first w-full flex-none md:max-w-[125px]">
           <Collections />
         </div>
-        <div className="order-last w-full min-h-screen md:order-none">
+        <div className="order-last min-h-screen w-full md:order-none">
           {children}
         </div>
         <div className="order-none flex-none md:order-last md:w-[125px]">
