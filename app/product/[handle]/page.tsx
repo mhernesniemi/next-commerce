@@ -64,8 +64,8 @@ export default async function ProductPage({
     "@context": "https://schema.org",
     "@type": "Product",
     name: product.title,
-    description: product.description ? product.description : "",
-    image: product.featuredImage.url ? product.featuredImage.url : "",
+    description: product.description,
+    image: product.featuredImage?.url,
     offers: {
       "@type": "AggregateOffer",
       availability: product.availableForSale
@@ -85,9 +85,9 @@ export default async function ProductPage({
           __html: JSON.stringify(productJsonLd),
         }}
       />
-      <div className="px-4 mx-auto max-w-screen-2xl">
-        <div className="flex flex-col p-8 bg-white border rounded-lg border-neutral-200 md:p-12 lg:flex-row lg:gap-8">
-          <div className="w-full h-full basis-full lg:basis-4/6">
+      <div className="mx-auto max-w-screen-2xl px-4">
+        <div className="flex flex-col rounded-lg border border-neutral-200 bg-white p-8 md:p-12 lg:flex-row lg:gap-8">
+          <div className="h-full w-full basis-full lg:basis-4/6">
             <Gallery
               images={product.images.map((image: Image) => ({
                 src: image.url,
@@ -116,14 +116,14 @@ async function RelatedProducts({ id }: { id: string }) {
   return (
     <div className="py-8">
       <h2 className="mb-4 text-2xl font-bold">Related Products</h2>
-      <ul className="flex w-full gap-4 pt-1 overflow-x-auto">
+      <ul className="flex w-full gap-4 overflow-x-auto pt-1">
         {relatedProducts.map((product) => (
           <li
             key={product.handle}
             className="aspect-square w-full flex-none min-[475px]:w-1/2 sm:w-1/3 md:w-1/4 lg:w-1/5"
           >
             <Link
-              className="relative w-full h-full"
+              className="relative h-full w-full"
               href={`/product/${product.handle}`}
             >
               <GridTileImage
